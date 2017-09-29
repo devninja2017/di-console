@@ -1,4 +1,4 @@
-package me.anwarshahriar;
+package devninja.di;
 
 public class App {
     public static void main(String[] strings) {

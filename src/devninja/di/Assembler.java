@@ -1,4 +1,4 @@
-package me.anwarshahriar;
+package devninja.di;
 
 import java.util.*;
 

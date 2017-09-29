@@ -1,4 +1,4 @@
-package me.anwarshahriar;
+package devninja.di;
 
 public interface Provider {
 }
