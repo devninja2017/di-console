@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -58,6 +59,21 @@ public class TestSuite {
         assertEquals(Foo.class, cl);
     }
 
+    @Test
+    public void classHasInjectAnnotatedField() {
+        Bar bar = new Bar();
+        Field[] fields = bar.getClass().getDeclaredFields();
+        Class cl = null;
+
+        int fieldCount = 0;
+        for (Field f : fields) {
+            if (f.isAnnotationPresent(Inject.class)) {
+                fieldCount++;
+            }
+        }
+        assertEquals(true, fieldCount > 0);
+    }
+
     private class DemoProvider implements Provider {
 
         @Provides
@@ -67,4 +83,8 @@ public class TestSuite {
     }
 
     private class Foo {}
+
+    private class Bar {
+        @Inject Foo foo;
+    }
 }
